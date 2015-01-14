@@ -9,6 +9,8 @@ Follow the install instructions for your operating system.
 
 Currently, the supported Sublime Versions only include 3. Feel free to test and report back for Sublime 2. 
 
+![Current view of highlighting](http://i.imgur.com/0xzi9nW.png?1)
+
 ## Mac OS X
 
 1. Checkout the respository to your `Packages/User` folder: 
