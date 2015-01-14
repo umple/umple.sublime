@@ -1,0 +1,636 @@
+# [PackageDev] target_format: plist, ext: tmLanguage
+---
+name: Umple Code
+scopeName: source.umple
+fileTypes: [ump]
+uuid: 205258f0-2046-41d3-b4c4-b864b7d6675b
+
+# patterns:
+# - include: '#class-def'
+# - include: '#namespace-def'
+# - include: '#comment'
+# - include: '#interface-def'
+
+
+# repository:
+#   comment: 
+#     comment: Comments
+#     name: comment.line.double-slash
+#     match: //.*
+
+#   namespace-def:
+#     comment: Define a namespace
+#     match: (namespace)\s+([A-Za-z_][\w_\$]*)\s*;
+#     captures:
+#       '1': { name: keyword.other.umple }
+#       '2': { name: entity.name.type }
+
+
+#   class-def:
+#     begin: \b(class)\s+([A-Za-z_][\w_\$]*)\s*\{
+#     beginCaptures:
+#       '1': { name: keyword.other.umple }
+#       '2': { name: entity.name.type }
+    
+#     patterns:
+#     - include: '#field-decl'
+#     - include: '#comment'
+#     - include: '#entity-decl'
+#     - include: '#key-decl'
+#     - include: '#depend-decl'
+#     - include: '#isA-decl'
+
+#     end: \} 
+
+#   interface-def:
+#     begin: \b(interface|enum)\s+([A-Za-z_][\w_\$]*)\s*\{
+#     beginCaptures:
+#       '1': { name: keyword.other.umple }
+#       '2': { name: entity.name.type }
+
+#     patterns:
+#     - include: '#field-decl'
+#     - include: '#comment'
+#     - include: '#entity-decl'
+#     - include: '#key-decl'
+#     - include: '#depend-decl'
+#     - include: '#iface-method-decl'
+
+#     end: \}
+
+#   field-decl:
+#     comment: Field declaration
+#     match: (?:(?'type'[A-Za-z_][^\s;-]*(?:\[\])*)\s+)?(?'var'[A-Za-z_][^\s;-]*)\s*;
+#     captures:
+#       # The type 
+#       'type': { name: entity.name.type }
+#       #field name
+#       'var': { name: variable.other.umple } 
+
+#   entity-decl:
+#     comment: Entity relationship 
+#     match: (?'digit1'(\d+\s*\.\.\s*)?(?:\d+|\*))\s*(?:--|\<-|-\>)\s*(?'digit2'(\d+\s*\.\.\s*)?(?:\d+|\*))
+#     captures:
+#       'digit1': { name: constant.numeric }
+#       'digit2': { name: constant.numeric }
+
+#   key-decl:
+#     comment: Declare a key
+#     match: (key)\s*\{\s*([A-Za-z_][\w_\$]*)\s*\}
+#     captures:
+#       '1': { name: keyword.other.umple }
+#       '2': { name: variable.other.umple }
+
+#   depend-decl:
+#     comment: Declares a dependence
+#     match: ^\s*(depend)\s+((?:[A-Za-z_][\w_\$]*)(?:\.(?:[A-Za-z_][\w_\$]*|\*))*)\s*;
+#     captures:
+#       '1': { name: keyword.other.umple }
+#       '2': { name: entity.name.type }
+
+  
+    
+#     # match: ^\s*(isA)\s+(?:\s*([^\s;-]+)(?:\s*(,\s*([^\s;-]+)))*)\s*;
+#     # #(([A-Za-z_][\w_\$]*)(?:\.(?:[A-Za-z_][\w_\$]*))*)\s*(?:,\s*((?:[A-Za-z_][\w_\$]*)(?:\.(?:[A-Za-z_][\w_\$]*))*))*;
+#     # captures:
+#     #   '0': { name: entity.name.type }
+#     #   '1': { name: keyword.other.umple }
+#     #   '2': { name: meta.package.java }
+#     #   '3': { name: meta.package.java }
+
+#   iface-method-decl:
+#     comment: Method declarations using
+#     begin: ^\s*(?'visibility'private|protected|public)\s*(?'type'[A-Za-z_][\w_-]+)\s+(?'method'[A-Za-z_][\w_-]*)\s*\(
+#     beginCaptures:
+#       'visibility': { name: keyword.other.umple }
+#       'type': { name: entity.name.type }
+#       'method': { name: entity.name.function }
+
+#     patterns:
+#     - comment: Parameter declaration
+#       match: \s*([A-Za-z_][\w_-]*(?:\[\])*)\s+([A-Za-z_][\w_-]*)\s*\,?\s*
+#       captures:
+#         # The type 
+#         '1': { name: entity.name.type }
+#         #field name
+#         '2': { name: variable.other.umple } 
+
+#     end: (?=\))\s*;
+
+  
+patterns:
+- name: meta.package.java
+  match: ^\s*(namespace)\s+([^ ;$]+)\s*(;)
+  captures:
+    '1': {name: keyword.other.package.java}
+    '2': {name: storage.modifier.package.java}
+    '3': {name: punctuation.terminator.java}
+
+# - name: meta.import.java
+#   contentName: storage.modifier.import.java
+#   begin: (import static)\b\s*
+#   beginCaptures:
+#     '1': {name: keyword.other.import.static.java}
+#   end: \s*(?:$|(;))
+#   endCaptures:
+#     '1': {name: punctuation.terminator.java}
+#   captures:
+#     '1': {name: keyword.other.import.java}
+#     '2': {name: storage.modifier.import.java}
+#     '3': {name: punctuation.terminator.java}
+#   patterns:
+#   - name: punctuation.separator.java
+#     match: \.
+#   - name: invalid.illegal.character_not_allowed_here.java
+#     match: \s
+
+# - name: meta.import.java
+#   contentName: storage.modifier.import.java
+#   begin: (import)\b\s*
+#   beginCaptures:
+#     '1': {name: keyword.other.import.java}
+#   end: \s*(?:$|(;))
+#   endCaptures:
+#     '1': {name: punctuation.terminator.java}
+#   captures:
+#     '1': {name: keyword.other.import.java}
+#     '2': {name: storage.modifier.import.java}
+#     '3': {name: punctuation.terminator.java}
+#   patterns:
+#   - match: \.
+#     name: punctuation.separator.java
+#   - match: \s
+#     name: invalid.illegal.character_not_allowed_here.java
+
+- include: '#code'
+
+repository:
+  all-types:
+    patterns:
+    - include: '#primitive-arrays'
+    - include: '#primitive-types'
+    - include: '#object-types'
+
+  assertions:
+    patterns:
+    - name: meta.declaration.assertion.java
+      begin: \b(assert)\s
+      beginCaptures:
+        '1': {name: keyword.control.assert.java}
+      end: $
+      patterns:
+      - name: keyword.operator.assert.expression-seperator.java
+        match: ':'
+      - include: '#code'
+
+  class:
+    name: meta.class.java
+    begin: (?=\w?[\w\s]*(?:class|interface|enum)\s+\w+)
+    end: '}'
+    endCaptures:
+      '0': {name: punctuation.section.class.end.java}
+    patterns:
+    - include: '#storage-modifiers'
+    - include: '#comments'
+    - name: meta.class.identifier.java
+      match: (class|interface|enum)\s+(\w+)
+      captures:
+        '1': {name: storage.modifier.java}
+        '2': {name: entity.name.type.class.java}
+    # - name: meta.definition.class.inherited.classes.java
+    #   begin: extends
+    #   beginCaptures:
+    #     '0': {name: storage.modifier.extends.java}
+    #   end: (?={|implements)
+    #   patterns:
+    #   - include: '#object-types-inherited'
+    #   - include: '#comments'
+    # - name: meta.definition.class.implemented.interfaces.java
+    #   begin: (implements)\s
+    #   beginCaptures:
+    #     '1': {name: storage.modifier.implements.java}
+    #   end: (?=\s*extends|\{)
+    #   patterns:
+    #   - include: '#object-types-inherited'
+    #   - include: '#comments'
+    - name: meta.class.body.java
+      begin: '{'
+      beginCaptures:
+        '0': {name: punctuation.section.class.begin.java}
+      end: (?=})
+      patterns:
+      - include: '#class-body'
+
+  class-body:
+    patterns:
+    - include: '#comments'
+    - include: '#class'
+    - include: '#enums'
+    - include: '#variables'
+    - include: '#methods'
+    - include: '#annotations'
+    - include: '#storage-modifiers'
+    - include: '#isA'
+    - include: '#key'
+    - include: '#depend'
+    - include: '#code'
+
+  code:
+    patterns:
+    - include: '#comments'
+    - include: '#class'
+    - begin: '{'
+      beginCaptures:
+        '0': {name: punctuation.section.block.begin.java}
+      end: '}'
+      endCaptures:
+        '0': {name: punctuation.section.block.end.java}
+      patterns:
+      - include: '#code'
+    - include: '#assertions'
+    - include: '#parens'
+    - include: '#constants-and-special-vars'
+    - include: '#anonymous-classes-and-new'
+    - include: '#keywords'
+    - include: '#storage-modifiers'
+    - include: '#method-call'
+    - include: '#strings'
+    - include: '#all-types'
+
+  comma-separator: 
+    patterns:
+    - name: punctuation.definition.seperator.parameter.java
+      match: (?:,)
+
+  comments:
+    patterns:
+    - name: comment.block.empty.java
+      match: /\*\*/
+      captures:
+        '0': {name: punctuation.definition.comment.java}
+    - include: text.html.javadoc
+    - include: '#comments-inline'
+
+  comments-inline:
+    patterns:
+    - name: comment.block.java
+      begin: /\*
+      end: \*/
+      captures:
+        '0': {name: punctuation.definition.comment.java}
+    - begin: (^[ \t]+)?(?=//)
+      beginCaptures:
+        '1': {name: punctuation.whitespace.comment.leading.java}
+      end: (?!\G)
+      patterns:
+      - name: comment.line.double-slash.java
+        begin: //
+        beginCaptures:
+          '0': {name: punctuation.definition.comment.java}
+        end: \n
+
+  constants-and-special-vars:
+    patterns:
+    - name: constant.language.java
+      match: \b(true|false|null)\b
+    - name: variable.language.java
+      match: \b(this|super)\b
+    - name: constant.numeric.hex.java
+      match: \b0[xX]\h([\h_]*\h)?[lL]?(?!\w|\.)
+    - name: constant.numeric.octal.java
+      match: \b0[0-7_]*[0-7][lL]?\b
+    - name: constant.numeric.binary.java
+      match: \b0[bB][01]([01_]*[01])?[lL]?\b
+    - name: constant.numeric.integer.java
+      match: \b(0|[1-9]([0-9_]*[0-9])?)[lL]?(?!\w|\.)
+    - name: constant.numeric.hex-float.java
+      match: "(?x)(?<!\\w)\t\t\t\t\t\t\t\t\t\t# Ensure word boundry\n\
+        \t\t\t\t\t\t(?>\n\t\t\t\t\t\t\t0[xX]\t\t\t\t\t\t\t\t\t# Start literal\n\t\t\
+        \t\t\t\t\t(\\h([\\h_]*\\h)?)?\t\t\t\t\t\t# Optional Number\n\t\t\t\t\t\t\t\
+        (\n\t\t\t\t\t\t\t\t(?<=\\h)\\.\t\t\t\t\t\t\t# A number must exist on\n\t\t\
+        \t\t\t\t      | \\.(?=\\h)\t\t\t\t\t\t\t#   one side of the decimal\n\t\t\t\
+        \t\t\t      | (?<=\\h)\t\t\t\t\t\t\t\t# Decimal not required\n\t\t\t\t\t\t\
+        \t)\n\t\t\t\t\t\t\t(\\h([\\h_]*\\h)?)?\t\t\t\t\t\t# Optional Number\n\t\t\t\
+        \t\t\t\t[pP]\t\t\t\t\t\t\t\t\t# Exponent Indicator\n\t\t\t\t\t\t\t[+-]?(0|[1-9]([0-9_]*[0-9])?)\t\
+        \t\t# Signed Integer\n\t\t\t\t\t\t\t[fFdD]?\t\t\t\t\t\t\t\t\t# Float Type\
+        \ Suffix\n\t\t\t\t\t\t)\n\t\t\t\t\t\t(?!\\w)\t\t\t\t\t\t\t\t\t\t# Ensure word\
+        \ boundry\n\t\t\t\t\t"
+    - name: constant.numeric.float.java
+      match: "(?x)\n\t\t\t\t\t\t(?<!\\w)\t\t\t\t\t\t\t\t\t\t\t# Ensure word boundry\n\
+        \t\t\t\t\t\t(?>\n\t\t\t\t\t\t\t(\n\t\t\t\t\t\t\t\t(0|[1-9]([0-9_]*[0-9])?)\t\
+        \t\t\t# Leading digits\n\t\t\t\t\t\t\t\t(?=[eEfFdD.])\t\t\t\t\t\t\t# Allow\
+        \ for numbers without .\n\t\t\t\t\t\t\t)?\n\t\t\t\t\t\t\t(\n\t\t\t\t\t\t\t\
+        \t(?<=[0-9])(?=[eEfFdD])\t\t\t\t\t# Allow for numbers without .\n\t\t\t\t\t\
+        \t\t  | \\.\n\t\t\t\t\t\t\t)\n\t\t\t\t\t\t\t(\n\t\t\t\t\t\t\t\t[0-9]([0-9_]*[0-9])?\t\
+        \t\t\t\t# Numbers after .\n\t\t\t\t\t\t\t)?\n\t\t\t\t\t\t\t(\n\t\t\t\t\t\t\
+        \t\t[eE][+-]?(0|[1-9]([0-9_]*[0-9])?)\t\t# Exponent\n\t\t\t\t\t\t\t)?\n\t\t\
+        \t\t\t\t\t[fFdD]?\t\t\t\t\t\t\t\t\t\t# Float Type Suffix\n\t\t\t\t\t\t)\n\t\
+        \t\t\t\t\t(?!\\w)\t\t\t\t\t\t\t\t\t\t\t# Ensure word boundry\n\t\t\t\t\t"
+    - name: constant.other.java
+      match: (\.)?\b([A-Z][A-Z0-9_]+)(?!<|\.class|\s*\w+\s*=)\b
+      captures:
+        '1': {name: keyword.operator.dereference.java}
+
+  depend:
+    name: meta.depend.umple
+    contentName: storage.modifier.import.java
+    begin: ^\s*(depend)\b\s*
+    beginCaptures:
+      '1': {name: keyword.other.import.java}
+    end: \s*(?:$|(;))
+    endCaptures:
+      '1': {name: punctuation.terminator.java}
+    captures:
+      '1': {name: keyword.other.import.java}
+      '2': {name: storage.modifier.import.java}
+      '3': {name: punctuation.terminator.java }      
+    patterns:
+      - match: \.
+        name: punctuation.separator.java
+      - match: \s
+        name: invalid.illegal.character_not_allowed_here.java 
+
+  enums:
+    begin: ^(?=\s*[A-Z0-9_]+\s*({|\(|,))
+    end: (?=;|})
+    patterns:
+    - name: meta.enum.java
+      begin: \w+
+      beginCaptures:
+        '0': {name: constant.other.enum.java}
+      end: (?=,|;|})
+      patterns:
+      - include: '#parens'
+      - begin: '{'
+        beginCaptures:
+          '0': {name: punctuation.section.enum.begin.java}
+        end: '}'
+        endCaptures:
+          '0': {name: punctuation.section.enum.end.java}
+        patterns:
+        - include: '#class-body'
+    - include: '#comments'
+
+  isA:
+    comment: Declares a dependence
+    begin: ^\s*(isA)\b
+    beginCaptures:
+      '1': { name: storage.modifier.java }
+    end: ';' 
+    patterns:
+    - include: '#comments'
+    - include: '#object-types'
+    - include: '#comma-separator'
+
+  key: 
+    comment: Hash and equality key
+    begin: ^\s*(key)
+    beginCaptures:
+      '1': { name: storage.modifier.java }
+    end:   (?=})
+    patterns:
+    - name: punctuation.section.method.begin.java
+      begin: '{'
+      end:   '}'
+      patterns:
+      - include: '#comments'
+      - name: variable.parameter.java
+        match: ([A-Za-z_][\w\$_]*)
+      - include: '#comma-separator'
+
+  keywords:
+    patterns:
+    - name: keyword.control.catch-exception.java
+      match: \b(try|catch|finally|throw)\b
+    - name: keyword.control.ternary.java
+      match: '\?|:'
+    - name: keyword.control.java
+      match: \b(return|break|case|continue|default|do|while|for|switch|if|else)\b
+    - name: keyword.operator.java
+      match: \b(instanceof)\b
+    - name: keyword.operator.bitwise.java
+      match: (<<|>>>?|~|\^)
+    - name: keyword.operator.assignment.bitwise.java
+      match: ((&|\^|\||<<|>>>?)=)
+    - name: keyword.operator.comparison.java
+      match: (===?|!=|<=|>=|<>|<|>)
+    - name: keyword.operator.assignment.arithmetic.java
+      match: ([+*/%-]=)
+    - name: keyword.operator.assignment.java
+      match: (=)
+    - name: keyword.operator.increment-decrement.java
+      match: (\-\-|\+\+)
+    - name: keyword.operator.arithmetic.java
+      match: (\-|\+|\*|\/|%)
+    - name: keyword.operator.logical.java
+      match: (!|&&|\|\|)
+    - name: keyword.operator.bitwise.java
+      match: (\||&)
+    - name: keyword.operator.dereference.java
+      match: (?<=\S)\.(?=\S)
+    - name: punctuation.terminator.java
+      match: ;
+
+  method-call:
+    name: meta.method-call.java
+    begin: ([\w$]+)(\()
+    beginCaptures:
+      '1': {name: meta.method.java}
+      '2': {name: punctuation.definition.method-parameters.begin.java}
+    end: \)
+    endCaptures:
+      '0': {name: punctuation.definition.method-parameters.end.java}
+    patterns:
+    - name: punctuation.definition.seperator.parameter.java
+      match: ','
+    - include: '#code'
+
+  methods:
+    name: meta.method.java
+    begin: (?!new)(?=[\w<].*\s+)(?=([^=/]|/(?!/))+\()
+    end: (})|(?=;)
+    endCaptures:
+      '1': {name: punctuation.section.method.end.java}
+    patterns:
+    - include: '#storage-modifiers'
+    - name: meta.method.identifier.java
+      begin: (\w+)\s*\(
+      beginCaptures:
+        '1': {name: entity.name.function.java}
+      end: \)
+      patterns:
+      - include: '#parameters'
+      - include: '#comments'
+    - name: storage.type.token.java
+      begin: <
+      end: '>'
+      patterns:
+      - include: '#object-types'
+      - comment: This is just to support <>'s with no actual type prefix
+        name: storage.type.generic.java
+        begin: <
+        end: '>|[^\w\s,\[\]<]'
+    - name: meta.method.return-type.java
+      begin: (?=\w.*\s+\w+\s*\()
+      end: (?=\w+\s*\()
+      patterns:
+      - include: '#all-types'
+      - include: '#comments'
+    - include: '#throws'
+    - name: meta.method.body.java
+      begin: '{'
+      beginCaptures:
+        '0': {name: punctuation.section.method.begin.java}
+      end: (?=})
+      patterns:
+      - include: '#code'
+    - include: '#comments'
+
+  object-types:
+    patterns:
+    - name: storage.type.generic.java
+      begin: \b((?:[a-z]\w*\.)*[A-Z]+\w*)<
+      end: '>|[^\w\s,\?<\[\]]'
+      patterns:
+      - include: '#object-types'
+      - begin: <
+        comment: This is just to support <>'s with no actual type prefix
+        end: '>|[^\w\s,\[\]<]'
+        name: storage.type.generic.java
+    - name: storage.type.object.array.java
+      begin: \b((?:[a-z]\w*\.)*[A-Z]+\w*)(?=\[)
+      end: (?=[^\]\s])
+      patterns:
+      - begin: \[
+        end: \]
+        patterns:
+        - include: '#code'
+    - name: storage.type.java
+      match: \b(?:[a-z]\w*(\.))*[A-Z]+\w*\b
+      captures:
+        '1': {name: keyword.operator.dereference.java}
+
+  object-types-inherited:
+    patterns:
+    - name: entity.other.inherited-class.java
+      begin: \b((?:[a-z]\w*\.)*[A-Z]+\w*)<
+      end: '>|[^\w\s,<]'
+      patterns:
+      - include: '#object-types'
+      - comment: This is just to support <>'s with no actual type prefix
+        name: storage.type.generic.java
+        begin: <
+        end: '>|[^\w\s,<]'
+    - name: entity.other.inherited-class.java
+      match: \b(?:[a-z]\w*(\.))*[A-Z]+\w*
+      captures:
+        '1': {name: keyword.operator.dereference.java}
+
+  parameters:
+    patterns:
+    - name: storage.modifier.java
+      match: final
+    - include: '#annotations'
+    - include: '#primitive-arrays'
+    - include: '#primitive-types'
+    - include: '#object-types'
+    - name: variable.parameter.java
+      match: \w+
+
+  parens:
+    begin: \(
+    end: \)
+    patterns:
+    - include: '#code'
+
+  primitive-arrays:
+    patterns:
+    - name: storage.type.primitive.array.java
+      match: \b(?:void|boolean|byte|char|short|int|float|long|double)(\[\])*\b
+
+  primitive-types:
+    patterns:
+    - name: storage.type.primitive.java
+      match: \b(?:void|boolean|byte|char|short|int|float|long|double)\b
+
+  storage-modifiers:
+    match: \b(public|private|protected|static|final|native|synchronized|abstract|threadsafe|transient)\b
+    captures:
+      '1': {name: storage.modifier.java}
+
+  strings:
+    patterns:
+    - name: string.quoted.double.java
+      begin: '"'
+      beginCaptures:
+        '0': {name: punctuation.definition.string.begin.java}
+      end: '"'
+      endCaptures:
+        '0': {name: punctuation.definition.string.end.java}
+      patterns:
+      - name: constant.character.escape.java
+        match: \\.
+    - name: string.quoted.single.java
+      begin: "'"
+      beginCaptures:
+        '0': {name: punctuation.definition.string.begin.java}
+      end: "'"
+      endCaptures:
+        '0': {name: punctuation.definition.string.end.java}
+      patterns:
+      - match: \\.
+        name: constant.character.escape.java
+
+  throws:
+    name: meta.throwables.java
+    begin: throws
+    beginCaptures:
+      '0': {name: storage.modifier.java}
+    end: (?={|;)
+    patterns:
+    - include: '#object-types'
+
+  values:
+    patterns:
+    - include: '#strings'
+    - include: '#object-types'
+    - include: '#constants-and-special-vars'
+
+  variables:
+    patterns:
+    - name: meta.definition.variable.java
+      begin: "(?x: \
+      	  (?= \
+      		(?: \
+      			(?:private|protected|public|native|synchronized|abstract|threadsafe|transient|static|final) \
+      			| (?:def) 												 \
+      			| (?:void|boolean|byte|char|short|int|float|long|double) \
+      			| (?:(?:[a-z]\\w*\\.)*[A-Z]+\\w*) 						 \
+      		) \
+        	\\s+(?!private|protected|public|native|synchronized|abstract|threadsafe|transient
+        		|static|final|def|void|boolean|byte|char|short|int|float|long|double)	\
+            [\\w\\d_<>\\[\\],\\?][\\w\\d_<>\\[\\],\\?\\s\\t]*										\
+        	(?:=|$) \
+          ) \
+      )"
+      end: (?=;)
+      patterns:
+      - match: \s
+      - match: ([A-Z_0-9]+)\s+(?=\=)
+        captures:
+          '1': {name: constant.variable.java}
+      - match: (\w[^\s,]*)\s+(?=\=)
+        captures:
+          '1': {name: meta.definition.variable.name.java}
+      - begin: '='
+        beginCaptures:
+          '0': {name: keyword.operator.assignment.java}
+        end: (?=;)
+        patterns:
+        - include: '#code'
+      - match: (\w[^\s=]*)(?=\s*;)
+        captures:
+          '1': {name: meta.definition.variable.name.java}
+      - include: '#code'
+    applyEndPatternLast: 1
+keyEquivalent: ^~J
