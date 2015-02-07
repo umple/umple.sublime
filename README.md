@@ -14,11 +14,12 @@ Currently, the supported Sublime Versions only include 3. Feel free to test and 
 ## Mac OS X
 
 1. Checkout the respository to your `Packages/User` folder: 
-	```bash
-	cd ~/Library/Application Support/Sublime Text 3/Packages/User/
-	git clone https://github.com/Nava2/UmpleForSublime.git ./umple
-	```
-1. Restart Sublime Text 3
+```
+cd ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User
+git clone https://github.com/umple-ucsop/umple.sublime.git ./umple
+```
+
+2. Restart Sublime Text 3
 
 ## Linux
 
