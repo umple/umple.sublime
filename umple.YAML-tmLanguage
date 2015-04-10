@@ -4,119 +4,6 @@ name: Umple Code
 scopeName: source.umple
 fileTypes: [ump]
 uuid: 205258f0-2046-41d3-b4c4-b864b7d6675b
-
-# patterns:
-# - include: '#class-def'
-# - include: '#namespace-def'
-# - include: '#comment'
-# - include: '#interface-def'
-
-
-# repository:
-#   comment: 
-#     comment: Comments
-#     name: comment.line.double-slash
-#     match: //.*
-
-#   namespace-def:
-#     comment: Define a namespace
-#     match: (namespace)\s+([A-Za-z_][\w_\$]*)\s*;
-#     captures:
-#       '1': { name: keyword.other.umple }
-#       '2': { name: entity.name.type }
-
-
-#   class-def:
-#     begin: \b(class)\s+([A-Za-z_][\w_\$]*)\s*\{
-#     beginCaptures:
-#       '1': { name: keyword.other.umple }
-#       '2': { name: entity.name.type }
-    
-#     patterns:
-#     - include: '#field-decl'
-#     - include: '#comment'
-#     - include: '#entity-decl'
-#     - include: '#key-decl'
-#     - include: '#depend-decl'
-#     - include: '#isA-decl'
-
-#     end: \} 
-
-#   interface-def:
-#     begin: \b(interface|enum)\s+([A-Za-z_][\w_\$]*)\s*\{
-#     beginCaptures:
-#       '1': { name: keyword.other.umple }
-#       '2': { name: entity.name.type }
-
-#     patterns:
-#     - include: '#field-decl'
-#     - include: '#comment'
-#     - include: '#entity-decl'
-#     - include: '#key-decl'
-#     - include: '#depend-decl'
-#     - include: '#iface-method-decl'
-
-#     end: \}
-
-#   field-decl:
-#     comment: Field declaration
-#     match: (?:(?'type'[A-Za-z_][^\s;-]*(?:\[\])*)\s+)?(?'var'[A-Za-z_][^\s;-]*)\s*;
-#     captures:
-#       # The type 
-#       'type': { name: entity.name.type }
-#       #field name
-#       'var': { name: variable.other.umple } 
-
-#   entity-decl:
-#     comment: Entity relationship 
-#     match: (?'digit1'(\d+\s*\.\.\s*)?(?:\d+|\*))\s*(?:--|\<-|-\>)\s*(?'digit2'(\d+\s*\.\.\s*)?(?:\d+|\*))
-#     captures:
-#       'digit1': { name: constant.numeric }
-#       'digit2': { name: constant.numeric }
-
-#   key-decl:
-#     comment: Declare a key
-#     match: (key)\s*\{\s*([A-Za-z_][\w_\$]*)\s*\}
-#     captures:
-#       '1': { name: keyword.other.umple }
-#       '2': { name: variable.other.umple }
-
-#   depend-decl:
-#     comment: Declares a dependence
-#     match: ^\s*(depend)\s+((?:[A-Za-z_][\w_\$]*)(?:\.(?:[A-Za-z_][\w_\$]*|\*))*)\s*;
-#     captures:
-#       '1': { name: keyword.other.umple }
-#       '2': { name: entity.name.type }
-
-  
-    
-#     # match: ^\s*(isA)\s+(?:\s*([^\s;-]+)(?:\s*(,\s*([^\s;-]+)))*)\s*;
-#     # #(([A-Za-z_][\w_\$]*)(?:\.(?:[A-Za-z_][\w_\$]*))*)\s*(?:,\s*((?:[A-Za-z_][\w_\$]*)(?:\.(?:[A-Za-z_][\w_\$]*))*))*;
-#     # captures:
-#     #   '0': { name: entity.name.type }
-#     #   '1': { name: keyword.other.umple }
-#     #   '2': { name: meta.package.java }
-#     #   '3': { name: meta.package.java }
-
-#   iface-method-decl:
-#     comment: Method declarations using
-#     begin: ^\s*(?'visibility'private|protected|public)\s*(?'type'[A-Za-z_][\w_-]+)\s+(?'method'[A-Za-z_][\w_-]*)\s*\(
-#     beginCaptures:
-#       'visibility': { name: keyword.other.umple }
-#       'type': { name: entity.name.type }
-#       'method': { name: entity.name.function }
-
-#     patterns:
-#     - comment: Parameter declaration
-#       match: \s*([A-Za-z_][\w_-]*(?:\[\])*)\s+([A-Za-z_][\w_-]*)\s*\,?\s*
-#       captures:
-#         # The type 
-#         '1': { name: entity.name.type }
-#         #field name
-#         '2': { name: variable.other.umple } 
-
-#     end: (?=\))\s*;
-
   
 patterns:
 - name: meta.package.java
@@ -125,42 +12,6 @@ patterns:
     '1': {name: keyword.other.package.java}
     '2': {name: storage.modifier.package.java}
     '3': {name: punctuation.terminator.java}
-
-# - name: meta.import.java
-#   contentName: storage.modifier.import.java
-#   begin: (import static)\b\s*
-#   beginCaptures:
-#     '1': {name: keyword.other.import.static.java}
-#   end: \s*(?:$|(;))
-#   endCaptures:
-#     '1': {name: punctuation.terminator.java}
-#   captures:
-#     '1': {name: keyword.other.import.java}
-#     '2': {name: storage.modifier.import.java}
-#     '3': {name: punctuation.terminator.java}
-#   patterns:
-#   - name: punctuation.separator.java
-#     match: \.
-#   - name: invalid.illegal.character_not_allowed_here.java
-#     match: \s
-
-# - name: meta.import.java
-#   contentName: storage.modifier.import.java
-#   begin: (import)\b\s*
-#   beginCaptures:
-#     '1': {name: keyword.other.import.java}
-#   end: \s*(?:$|(;))
-#   endCaptures:
-#     '1': {name: punctuation.terminator.java}
-#   captures:
-#     '1': {name: keyword.other.import.java}
-#     '2': {name: storage.modifier.import.java}
-#     '3': {name: punctuation.terminator.java}
-#   patterns:
-#   - match: \.
-#     name: punctuation.separator.java
-#   - match: \s
-#     name: invalid.illegal.character_not_allowed_here.java
 
 - include: '#code'
 
@@ -183,6 +34,31 @@ repository:
         match: ':'
       - include: '#code'
 
+  aspect-tag:
+    comment: Aspect-oriented programming concept
+    begin: \b(before|after)\s+
+    beginCaptures:
+      '1': { name: keyword.control.java }
+    end: (})
+    endCaptures:
+      '1': {name: punctuation.section.method.end.java}
+    patterns:
+    - name: meta.method.identifier.java
+      begin: \b(\w+)\s*
+      beginCaptures:
+        '1': {name: entity.name.function.java}
+      end: (?={)
+      patterns:
+      - include: '#comments'
+    - name: meta.method.body.java
+      begin: '{'
+      beginCaptures:
+        '0': {name: punctuation.section.method.begin.java}
+      end: (?=})
+      patterns:
+      - include: '#code'
+    - include: '#comments'
+
   class:
     name: meta.class.java
     begin: (?=\w?[\w\s]*(?:class|interface|enum)\s+\w+)
@@ -197,22 +73,6 @@ repository:
       captures:
         '1': {name: storage.modifier.java}
         '2': {name: entity.name.type.class.java}
-    # - name: meta.definition.class.inherited.classes.java
-    #   begin: extends
-    #   beginCaptures:
-    #     '0': {name: storage.modifier.extends.java}
-    #   end: (?={|implements)
-    #   patterns:
-    #   - include: '#object-types-inherited'
-    #   - include: '#comments'
-    # - name: meta.definition.class.implemented.interfaces.java
-    #   begin: (implements)\s
-    #   beginCaptures:
-    #     '1': {name: storage.modifier.implements.java}
-    #   end: (?=\s*extends|\{)
-    #   patterns:
-    #   - include: '#object-types-inherited'
-    #   - include: '#comments'
     - name: meta.class.body.java
       begin: '{'
       beginCaptures:
@@ -234,6 +94,7 @@ repository:
     - include: '#key'
     - include: '#depend'
     - include: '#code'
+    - include: '#aspect-tag'
 
   code:
     patterns:
@@ -546,15 +407,15 @@ repository:
   primitive-arrays:
     patterns:
     - name: storage.type.primitive.array.java
-      match: \b(?:void|boolean|byte|char|short|int|float|long|double)(\[\])*\b
+      match: \b(?:void|Boolean|Integer|Float|Double|String|Date|Time)(\[\])*\b
 
   primitive-types:
     patterns:
     - name: storage.type.primitive.java
-      match: \b(?:void|boolean|byte|char|short|int|float|long|double)\b
+      match: \b(?:void|Boolean|Integer|Float|Double|String|Date|Time)\b
 
   storage-modifiers:
-    match: \b(public|private|protected|static|final|native|synchronized|abstract|threadsafe|transient)\b
+    match: \b(public|private|protected|synchronized|abstract|immutable|defaulted)\b
     captures:
       '1': {name: storage.modifier.java}
 
