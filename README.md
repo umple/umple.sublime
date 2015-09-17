@@ -25,8 +25,3 @@ git clone https://github.com/umple-ucsop/umple.sublime.git ./umple
 
 Coming soon, when I get some time. 
 
-# About this repository
-
-This repository is only a temporary living space -- in theory -- until the project is merged into the [Umple Project](http://www.umple.org) if Package Control will let me. 
-
-I, Kevin Brightwell (Nava2), am a student working on this as an aside with the [UCOSP](http://ucosp.ca) project course.
