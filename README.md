@@ -1,3 +1,7 @@
+# This repository is obsolete and has been replaced by facilities in the umple-lsp repository
+
+[Go to the Umple Subblime page at https://github.com/umple/umple-lsp/blob/master/editors/sublime/README.md](https://github.com/umple/umple-lsp/blob/master/editors/sublime/README.md)
+
 # UmpleForSublime
 [Sublime Text](http://www.sublimetext.com/) components for the [Umple Project](http://www.umple.org)
 
